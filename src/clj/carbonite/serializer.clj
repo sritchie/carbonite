@@ -13,7 +13,7 @@
            [java.sql Time Timestamp]
            [clojure.lang Keyword Symbol PersistentArrayMap
             PersistentHashMap MapEntry PersistentStructMap 
-            PersistentVector PersistentHashSet Ratio
+            PersistentVector PersistentHashSet Ratio ArraySeq
             Cons PersistentList PersistentList$EmptyList Var
             ArraySeq$ArraySeq_int LazySeq IteratorSeq StringSeq]))
 
@@ -192,7 +192,7 @@
     [MapEntry (clojure-coll-serializer registry [])]]
 
    ;; list/seq collections
-   (zipmap [Cons PersistentList$EmptyList PersistentList LazySeq IteratorSeq]
+   (zipmap [Cons PersistentList$EmptyList PersistentList LazySeq IteratorSeq ArraySeq]
            (repeat (clojure-seq-serializer registry list)))
 
    ;; other seqs
