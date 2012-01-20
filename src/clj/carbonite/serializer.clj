@@ -148,6 +148,15 @@
       (let [constructor (.getConstructor klass (into-array Class [Long/TYPE]))]
         (.newInstance constructor (object-array [ (LongSerializer/get buffer true)]))))))
 
+(defn intern-type-serializer
+  "Serialize clojure intern types"
+  [value-function intern-function]
+  (proxy [Serializer] []
+    (writeObjectData [buffer k]
+      (StringSerializer/put buffer (value-function k)))
+    (readObjectData [buffer type]
+      (intern-function (StringSerializer/get buffer)))))
+
 (def ratio-serializer
   (proxy [Serializer] []  
     (writeObjectData [buffer ^Ratio obj]
@@ -163,9 +172,12 @@
   to install."}
   clojure-primitives
   (let [prims (array-map
-               Keyword clojure-reader-serializer
-               Symbol clojure-reader-serializer
-               Ratio clojure-reader-serializer
+               Keyword (intern-type-serializer
+                        #(.substring (.toString ^Keyword %) 1) ;;remove :
+                        #(Keyword/intern ^String %))
+               Symbol (intern-type-serializer
+                       #(.toString ^Symbol %) #(Symbol/intern ^String %))
+               Ratio ratio-serializer
                Var clojure-print-dup-serializer)]
     (if-let [big-int (try (Class/forName "clojure.lang.BigInt")
                           (catch ClassNotFoundException _))]

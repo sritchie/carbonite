@@ -1,7 +1,7 @@
 (ns carbonite.api
   (:require [clojure.string :as s])
   (:use [carbonite.serializer])
-  (:import [com.esotericsoftware.kryo Kryo Serializer]
+  (:import [com.esotericsoftware.kryo Kryo Serializer ObjectBuffer]
            [java.nio ByteBuffer]))
 
 ;;;; Creating a Kryo registry
@@ -58,8 +58,11 @@
 (defn write-buffer
   "Write serialized obj into ByteBuffer using registry.  If the buffer is not big enough,
    a SerializationException will be thrown."
-  [^Kryo registry byte-buffer obj]
-  (.writeClassAndObject registry byte-buffer obj))
+  ([^Kryo registry obj]
+     (let [buffer (ObjectBuffer. registry)]
+       (.writeClassAndObject buffer obj)))
+  ([^Kryo registry byte-buffer obj]
+    (.writeClassAndObject registry byte-buffer obj)))
 
 (defn read-buffer
   "Read serialized object from byte-buffer using registry."
