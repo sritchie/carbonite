@@ -13,7 +13,7 @@ public class ClojureSeqSerializer extends ClojureCollSerializer {
         readSeq = RT.var("carbonite.serializer", "read-seq");
     }
 
-    public Object create(Kryo kryo, Input input, Class aClass) {
+    public Object read(Kryo kryo, Input input, Class aClass) {
         return readSeq.invoke(kryo, input);
     }
 }

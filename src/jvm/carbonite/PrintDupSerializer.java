@@ -22,7 +22,7 @@ public class PrintDupSerializer extends Serializer {
         cljPrintDup.invoke(output, o);
     }
 
-    public Object create(Kryo kryo, Input input, Class aClass) {
+    public Object read(Kryo kryo, Input input, Class aClass) {
         return cljRead.invoke(input);
     }
 }

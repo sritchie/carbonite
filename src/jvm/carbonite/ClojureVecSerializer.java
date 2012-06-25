@@ -13,7 +13,7 @@ public class ClojureVecSerializer extends ClojureCollSerializer {
         readVec = RT.var("carbonite.serializer", "read-vector");
     }
 
-    public Object create(Kryo kryo, Input input, Class aClass) {
+    public Object read(Kryo kryo, Input input, Class aClass) {
         return readVec.invoke(kryo, input);
     }
 }
