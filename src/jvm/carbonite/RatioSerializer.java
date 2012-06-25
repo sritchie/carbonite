@@ -19,9 +19,9 @@ public class RatioSerializer extends Serializer<Ratio> {
         big.write(k, output, ratio.denominator);
     }
 
-    public Ratio create(Kryo kryo, Input input, Class<Ratio> ratioClass) {
-        BigInteger num = big.create(kryo, input, null);
-        BigInteger denom = big.create(kryo, input, null);
+    public Ratio read(Kryo kryo, Input input, Class<Ratio> ratioClass) {
+        BigInteger num = big.read(kryo, input, null);
+        BigInteger denom = big.read(kryo, input, null);
 
         return new Ratio(num, denom);
     }

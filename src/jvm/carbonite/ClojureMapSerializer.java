@@ -23,7 +23,7 @@ public class ClojureMapSerializer extends Serializer {
         writeMap.invoke(kryo, output, o);
     }
 
-    public Object create(Kryo kryo, Input input, Class aClass) {
+    public Object read(Kryo kryo, Input input, Class aClass) {
         return readMap.invoke(kryo, input);
     }
 }

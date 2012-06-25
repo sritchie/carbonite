@@ -13,7 +13,7 @@
     (write [kryo output saber]
       (clj-print output (:style saber))
       (clj-print output (:color saber)))
-    (create [kryo input type]
+    (read [kryo input type]
       (LightSaber. (clj-read input)
                    (clj-read input)))))
 
