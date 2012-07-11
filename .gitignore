@@ -9,3 +9,4 @@ pom.xml
 *.ipr
 .DS_Store
 .idea
+target
