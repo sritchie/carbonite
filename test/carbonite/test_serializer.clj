@@ -2,6 +2,8 @@
   (:use [clojure.test]
         [carbonite api buffer serializer])
   (:import [com.esotericsoftware.kryo Serializer]
+           ;[com.esotericsoftware.minlog Log]
+           ;; (Log/set Log/LEVEL_TRACE) gives serialization details
            [java.nio ByteBuffer]))
 
 ;; An elegant weapon, not as clumsy or random as a blaster.
@@ -25,3 +27,32 @@
            (->> darth-maul
                 (write-bytes registry)
                 (read-bytes registry))))))
+
+(deftest test-repeated-vectors
+  (let [registry (default-registry)
+        colls (repeat 5 [1])]
+    (is (= colls (->> colls
+                      (write-bytes registry)
+                      (read-bytes registry))))))
+
+(deftest test-repeated-simple-maps
+  (let [registry (default-registry)
+        colls (repeat 5 {1 0})]
+    (is (= colls (->> colls
+                      (write-bytes registry)
+                      (read-bytes registry))))))
+
+(deftest test-repeated-nested-maps
+  (let [registry (default-registry)
+        colls (repeat 5 {1 {{2 3} 4}})]
+    (is (= colls (->> colls
+                      (write-bytes registry)
+                      (read-bytes registry))))))
+
+(deftest test-nested-seqs
+  (let [registry (default-registry)
+        x (cons :a ())
+        colls (cons x (cons :b x))]
+    (is (= colls (->> colls
+                      (write-bytes registry)
+                      (read-bytes registry))))))
