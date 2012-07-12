@@ -4,6 +4,8 @@
 (defproject cascalog/carbonite "1.3.0"
   :source-path "src/clj"
   :java-source-path "src/jvm"
+  :source-paths ["src/clj"]
+  :java-source-paths ["src/jvm"]
   :description "Write Clojure data to and from bytes using Kryo."
   :repositories {"conjars" "http://conjars.org/repo/"}
   :dev-dependencies [[lein-multi "1.1.0-SNAPSHOT"]]
