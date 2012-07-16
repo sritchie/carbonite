@@ -1,7 +1,7 @@
 (def shared '[[com.esotericsoftware.kryo/kryo "2.16"]
               [com.twitter/meat-locker "0.3.0"]])
 
-(defproject cascalog/carbonite "1.3.0"
+(defproject com.twitter/carbonite "1.3.0"
   :source-path "src/clj"
   :java-source-path "src/jvm"
   :description "Write Clojure data to and from bytes using Kryo."
