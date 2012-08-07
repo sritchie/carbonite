@@ -1,5 +1,5 @@
-(def shared '[[com.esotericsoftware.kryo/kryo "2.16"]
-              [com.twitter/meat-locker "0.3.0"]])
+(def shared '[[com.esotericsoftware.kryo/kryo "2.17"]
+              [com.twitter/meat-locker "0.3.1"]])
 
 (defproject com.twitter/carbonite "1.3.1-SNAPSHOT"
   :source-path "src/clj"
