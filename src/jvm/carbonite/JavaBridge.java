@@ -14,6 +14,8 @@ public class JavaBridge {
     static Var javaPrimitives;
     static Var cljCollections;
 
+    static boolean registryEnhanced = false;
+
     public static void initialize() {
         try {
             require.invoke(symbol.invoke("carbonite.api"));
@@ -53,9 +55,12 @@ public class JavaBridge {
         require.invoke(symbol.invoke("carbonite.serializer"));
     }
 
-    public static void enhanceRegistry(Kryo registry) throws Exception {
-        registerPrimitives(registry);
-        registerJavaPrimitives(registry);
-        registerCollections(registry);
+    public static synchronized void enhanceRegistry(Kryo registry) throws Exception {
+        if(!registryEnhanced) {
+            registerPrimitives(registry);
+            registerJavaPrimitives(registry);
+            registerCollections(registry);
+            registryEnhanced = true;
+        }
     }
 }
