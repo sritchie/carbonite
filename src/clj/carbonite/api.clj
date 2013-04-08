@@ -1,6 +1,6 @@
 (ns carbonite.api
-  (:require [clojure.string :as s])
-  (:use [carbonite.serializer])
+  (:require [clojure.string :as s]
+            [carbonite.serializer :as serializer])
   (:import [com.esotericsoftware.kryo Kryo Serializer]
            [java.nio ByteBuffer]))
 
@@ -27,9 +27,9 @@
      (default-registry (new-registry)))
   ([registry]
      (doto registry
-       (register-serializers clojure-primitives)
-       (register-serializers java-primitives)
-       (register-serializers clojure-collections))))
+       (register-serializers serializer/clojure-primitives)
+       (register-serializers serializer/java-primitives)
+       (register-serializers serializer/clojure-collections))))
 
 ;;;; APIs to read and write objects using ByteBuffers
 
