@@ -3,7 +3,7 @@
   (:import [carbonite ClojureMapSerializer RatioSerializer
             ClojureReaderSerializer PrintDupSerializer StringSeqSerializer
             ClojureVecSerializer ClojureSetSerializer ClojureSeqSerializer]
-           [com.twitter.meatlocker.kryo  RegexSerializer SqlDateSerializer
+           [com.twitter.chill.java  RegexSerializer SqlDateSerializer
             SqlTimeSerializer TimestampSerializer URISerializer UUIDSerializer]
            [com.esotericsoftware.kryo Kryo]
            [com.esotericsoftware.kryo.io Input Output]
@@ -11,7 +11,7 @@
            [java.util.regex Pattern]
            [java.sql Time Timestamp]
            [clojure.lang Keyword Symbol PersistentArrayMap
-            PersistentHashMap MapEntry PersistentStructMap 
+            PersistentHashMap MapEntry PersistentStructMap
             PersistentVector PersistentHashSet Ratio ArraySeq
             Cons PersistentList PersistentList$EmptyList Var
             LazySeq IteratorSeq StringSeq]))
@@ -121,10 +121,10 @@
    (map #(vector % (ClojureSeqSerializer.))
         [Cons PersistentList$EmptyList PersistentList
          LazySeq IteratorSeq ArraySeq])
-   
+
    ;; other seqs
    [[StringSeq (StringSeqSerializer.)]]
-   
+
    ;; maps - use transients for perf
    (map #(vector % (ClojureMapSerializer.))
         [PersistentArrayMap PersistentHashMap PersistentStructMap])))
@@ -134,9 +134,9 @@
 ;; Licensed under the Apache License, Version 2.0 (the "License");
 ;; you may not use this file except in compliance with the License.
 ;; You may obtain a copy of the License at
-;; 
+;;
 ;;     http://www.apache.org/licenses/LICENSE-2.0
-;; 
+;;
 ;; Unless required by applicable law or agreed to in writing, software
 ;; distributed under the License is distributed on an "AS IS" BASIS,
 ;; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
