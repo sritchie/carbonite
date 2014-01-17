@@ -14,7 +14,7 @@
             PersistentHashMap MapEntry PersistentStructMap
             PersistentVector PersistentHashSet Ratio ArraySeq
             Cons PersistentList PersistentList$EmptyList Var
-            LazySeq IteratorSeq StringSeq]))
+            LazySeq IteratorSeq StringSeq PersistentVector$ChunkedSeq]))
 
 (defn clj-print
   "Use the Clojure pr-str to print an object into the Output using
@@ -120,7 +120,8 @@
    ;; list/seq collections
    (map #(vector % (ClojureSeqSerializer.))
         [Cons PersistentList$EmptyList PersistentList
-         LazySeq IteratorSeq ArraySeq])
+         LazySeq IteratorSeq ArraySeq
+         PersistentVector$ChunkedSeq])
 
    ;; other seqs
    [[StringSeq (StringSeqSerializer.)]]
