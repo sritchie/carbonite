@@ -9,5 +9,4 @@
                  [com.twitter/chill-java "0.3.5"]]
   :profiles {:1.2 {:dependencies [[org.clojure/clojure "1.2.1"]]}
              :1.3 {:dependencies [[org.clojure/clojure "1.3.0"]]}
-             :1.4 {:dependencies [[org.clojure/clojure "1.4.0"]]}}
-  :warn-on-reflection true)
+             :1.4 {:dependencies [[org.clojure/clojure "1.4.0"]]}})
