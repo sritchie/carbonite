@@ -16,20 +16,20 @@ import com.esotericsoftware.kryo.io.Output;
  *
  */
 public class ClojureReaderSerializer extends Serializer {
-    final Var cljRead;
-    final Var cljPrint;
+  final Var cljRead;
+  final Var cljPrint;
 
-    public ClojureReaderSerializer() {
-        JavaBridge.requireCarbonite();
-        cljRead = RT.var("carbonite.serializer", "clj-read");
-        cljPrint = RT.var("carbonite.serializer", "clj-print");
-    }
+  public ClojureReaderSerializer() {
+    JavaBridge.requireCarbonite();
+    cljRead = RT.var("carbonite.serializer", "clj-read");
+    cljPrint = RT.var("carbonite.serializer", "clj-print");
+  }
 
-    public void write(Kryo kryo, Output output, Object o) {
-        cljPrint.invoke(output, o);
-    }
+  public void write(Kryo kryo, Output output, Object o) {
+    cljPrint.invoke(output, o);
+  }
 
-    public Object read(Kryo kryo, Input input, Class aClass) {
-        return cljRead.invoke(input);
-    }
+  public Object read(Kryo kryo, Input input, Class aClass) {
+    return cljRead.invoke(input);
+  }
 }

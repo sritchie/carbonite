@@ -7,13 +7,13 @@ import com.esotericsoftware.kryo.io.Input;
 
 /** User: sritchie Date: 1/21/12 Time: 8:13 PM */
 public class ClojureVecSerializer extends ClojureCollSerializer {
-    final Var readVec;
+  final Var readVec;
 
-    public ClojureVecSerializer() {
-        readVec = RT.var("carbonite.serializer", "read-vector");
-    }
+  public ClojureVecSerializer() {
+    readVec = RT.var("carbonite.serializer", "read-vector");
+  }
 
-    public Object read(Kryo kryo, Input input, Class aClass) {
-        return readVec.invoke(kryo, input);
-    }
+  public Object read(Kryo kryo, Input input, Class aClass) {
+    return readVec.invoke(kryo, input);
+  }
 }

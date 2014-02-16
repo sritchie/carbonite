@@ -7,13 +7,13 @@ import com.esotericsoftware.kryo.io.Input;
 
 /** User: sritchie Date: 1/21/12 Time: 8:09 PM */
 public class ClojureSeqSerializer extends ClojureCollSerializer {
-    final Var readSeq;
+  final Var readSeq;
 
-    public ClojureSeqSerializer() {
-        readSeq = RT.var("carbonite.serializer", "read-seq");
-    }
+  public ClojureSeqSerializer() {
+    readSeq = RT.var("carbonite.serializer", "read-seq");
+  }
 
-    public Object read(Kryo kryo, Input input, Class aClass) {
-        return readSeq.invoke(kryo, input);
-    }
+  public Object read(Kryo kryo, Input input, Class aClass) {
+    return readSeq.invoke(kryo, input);
+  }
 }
