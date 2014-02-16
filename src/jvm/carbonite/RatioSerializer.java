@@ -11,18 +11,18 @@ import java.math.BigInteger;
 
 /** User: sritchie Date: 1/20/12 Time: 3:49 PM */
 public class RatioSerializer extends Serializer<Ratio> {
-    final DefaultSerializers.BigIntegerSerializer big  = new DefaultSerializers.BigIntegerSerializer();
+  final DefaultSerializers.BigIntegerSerializer big  = new DefaultSerializers.BigIntegerSerializer();
 
 
-    public void write(Kryo k, Output output, Ratio ratio) {
-        big.write(k, output, ratio.numerator);
-        big.write(k, output, ratio.denominator);
-    }
+  public void write(Kryo k, Output output, Ratio ratio) {
+    big.write(k, output, ratio.numerator);
+    big.write(k, output, ratio.denominator);
+  }
 
-    public Ratio read(Kryo kryo, Input input, Class<Ratio> ratioClass) {
-        BigInteger num = big.read(kryo, input, null);
-        BigInteger denom = big.read(kryo, input, null);
+  public Ratio read(Kryo kryo, Input input, Class<Ratio> ratioClass) {
+    BigInteger num = big.read(kryo, input, null);
+    BigInteger denom = big.read(kryo, input, null);
 
-        return new Ratio(num, denom);
-    }
+    return new Ratio(num, denom);
+  }
 }
