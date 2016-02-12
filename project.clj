@@ -1,4 +1,4 @@
-(defproject com.twitter/carbonite "1.5.0-SNAPSHOT"
+(defproject com.twitter/carbonite "1.5.0"
   :source-paths ["src/clj"]
   :java-source-paths ["src/jvm"]
   :javac-options ["-source" "1.6" "-target" "1.6"]
